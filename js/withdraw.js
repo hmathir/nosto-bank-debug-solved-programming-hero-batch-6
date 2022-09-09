@@ -9,12 +9,20 @@
 7. set balance total using setTextElementValueById
 */
 
-document.getElementById("btn-withdraw").addEventListener("click", function () {
+document.getElementById("btn-withdraw").addEventListener('click', function () {
   const newWithdrawAmount = getInputFieldValueById("withdraw-field");
-  const previousWithdrawTotal = getTextElementValueById("withdraw-total ");
+  const previousWithdrawTotal = getTextElementValueById("withdraw-total");
   const newWithdrawTotal = previousWithdrawTotal + newWithdrawAmount;
-  setTextElementValueById(withdraw - total, newWithdrawTotal);
+  if(isNaN(newWithdrawTotal) || newWithdrawAmount < 0){
+    alert('Something Went Wrong, Please Double Check!');
+    return;
+  }
   const previousBalanceTotal = getTextElementValueById("balance-total");
   const newBalanceTotal = previousBalanceTotal - newWithdrawAmount;
+  if(newWithdrawAmount > previousBalanceTotal){
+    alert(`You Can Not Withdraw Over ${previousBalanceTotal}. Because You Don't Have More than it.`);
+    return;
+  }
+  setTextElementValueById("withdraw-total", newWithdrawTotal);
   setTextElementValueById("balance-total", newBalanceTotal);
 });

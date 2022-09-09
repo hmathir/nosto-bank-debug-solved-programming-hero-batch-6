@@ -6,6 +6,10 @@ document.getElementById("btn-deposit").addEventListener("click", function () {
     3. convert string value to a number
     */
   const newDepositAmount = getInputFieldValueById("deposit-field");
+  if(isNaN(newDepositAmount) || newDepositAmount < 0){
+    alert('Please Enter Valid Amount.');
+    return;
+  }
   /* 
     1. get previous deposit total by id
 
@@ -19,7 +23,7 @@ document.getElementById("btn-deposit").addEventListener("click", function () {
   setTextElementValueById("deposit-total", newDepositTotal);
 
   // get previous balance by using the function
-  const previousBalanceTotal = getextElementValueById("balance-total");
+  const previousBalanceTotal = getTextElementValueById("balance-total");
   const newBalanceTotal = previousBalanceTotal + newDepositAmount;
   setTextElementValueById("balance-total", newBalanceTotal);
-);
+});
